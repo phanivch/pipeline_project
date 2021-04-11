@@ -1,4 +1,4 @@
-pipeline {
+pipline {
         agent any
             tools {
                 maven "MY_MAVEN"
@@ -37,9 +37,8 @@ pipeline {
 		}
 		stage ('Push Docker Image') {
 			steps {
-				withCredentials([usernamePassword(credentialsId: 'DOCKER_CREDS', passwordVari
-able: 'DOCKER_HUB_PWD', usernameVariable: 'DOCKER_HUB_USER')]) {
-                                        sh 'docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PWD'
+				withCredentials([usernamePassword(credentialsId: 'DOCKER_CREDS', passwordVariable: 'DOCKER_HUB_PWD', usernameVariable: 'DOCKER_HUB_USER')] {
+                                sh 'docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PWD'
                                 }
 				sh 'docker push phanivch/addressbook:pom.version'
 			}
