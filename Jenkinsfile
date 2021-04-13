@@ -31,8 +31,10 @@ pipline {
 		}
 		stage ('Tag Docker Image ') {
 			steps {
-				pom = readMavenPom file: 'pom.xml'
-				sh 'docker tag addressbook:latest phanivch/addressbook:pom.version'
+				script {
+        				pom = readMavenPom file: 'pom.xml'
+			}
+			sh "docker tag addressbook:latest phanivch/addressbook:${pom.version}"
 			}
 		}
 		stage ('Push Docker Image') {
