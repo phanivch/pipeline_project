@@ -32,7 +32,7 @@ pipeline {
 		stage('Tag Docker Image') {
                         steps {
 				script { 
-					def version = readMavenPom().getVersion()
+					//def version = readMavenPom().getVersion()
 					pom = readMavenPom file: 'pom.xml'
 				}
 				echo pom.version
